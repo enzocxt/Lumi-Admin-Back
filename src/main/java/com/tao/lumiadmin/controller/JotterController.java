@@ -15,6 +15,7 @@ public class JotterController {
     @Autowired
     JotterArticleService jotterArticleService;
 
+    @CrossOrigin
     @PostMapping("api/admin/content/article")
     public Result saveArticle(@RequestBody @Valid JotterArticle article) {
         jotterArticleService.addOrUpdate(article);

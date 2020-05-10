@@ -34,11 +34,20 @@ public class AdminPermissionService {
 
     public List<AdminPermission> list() {return adminPermissionDAO.findAll();}
 
+    /**
+     * Determine whether client requires permission when requests
+     * a certain API.
+     * @param requestAPI API requested by client
+     * @return true when requestAPI is found in the DB
+     */
     public boolean needFilter(String requestAPI) {
         List<AdminPermission> ps = adminPermissionDAO.findAll();
+        System.out.println("|------- request api: " + requestAPI);
         for (AdminPermission p : ps) {
             // 这里我们进行前缀匹配，拥有父权限就拥有所有子权限
             if (requestAPI.startsWith(p.getUrl())) {
+                System.out.println(p.getUrl());
+                System.out.println("|------- prefix matched");
                 return true;
             }
         }

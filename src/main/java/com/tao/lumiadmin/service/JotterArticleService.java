@@ -6,6 +6,7 @@ import com.tao.lumiadmin.pojo.JotterArticle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,11 @@ public class JotterArticleService {
 
     public Page list(int page, int size) {
         Sort sort = Sort.by(Sort.Direction.DESC, "id");
-        return jotterArticleDAO.findAll(PageRequest.of(page, size, sort));
+        System.out.println("\n------- JotterArticleService.list()");
+        // PageRequest: 
+        Pageable pageable = PageRequest.of(page, size, sort);
+        System.out.println(pageable);
+        return jotterArticleDAO.findAll(pageable);
     }
 
     public JotterArticle findById(int id) {

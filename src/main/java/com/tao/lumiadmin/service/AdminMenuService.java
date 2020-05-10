@@ -4,6 +4,7 @@ import com.tao.lumiadmin.dao.AdminMenuDAO;
 import com.tao.lumiadmin.pojo.*;
 // import com.tao.lumiadmin.entity.*;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +30,10 @@ public class AdminMenuService {
 
     public List<AdminMenu> getMenusByCurrentUser() {
         System.out.println("------- getMenusByCurretnUser()");
-        String username = SecurityUtils.getSubject().getPrincipal().toString();
+        Subject subject = SecurityUtils.getSubject();
+        System.out.println("\n------- subject:");
+        System.out.println(subject);
+        String username = subject.getPrincipal().toString();
         System.out.println("\n------- username:");
         System.out.println(username);
         User user = userService.findByUsername(username);

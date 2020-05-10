@@ -18,7 +18,7 @@ public class MenuController {
     @CrossOrigin
     @GetMapping("/api/menu")
     public List<AdminMenu> menu() {
-        System.out.println("------- in api -------");
+        System.out.println("------- in api/menu -------");
         List<AdminMenu> menus = adminMenuService.getMenusByCurrentUser();
         
         System.out.println("------- menu length:");
